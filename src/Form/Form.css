@@ -1,0 +1,37 @@
+.Form {
+  margin: 20px 50px 20px 50px;
+  padding: 20px;
+  font-family: Helvetica;
+  background: lightgrey;
+}
+
+.Form h2 {
+  text-align: center;
+}
+
+.Form form {
+  text-align: left;
+}
+
+.Form input, select, textarea {
+  margin: 5px;
+  font-family: Helvetica;
+}
+
+.Form textarea {
+  width: 300px;
+  height: 150px;
+}
+
+.Form .Form__button-container {
+  text-align: center;
+}
+
+.Form button {
+  margin-top: 10px;
+  background: darkolivegreen;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px 5px 10px;
+}
