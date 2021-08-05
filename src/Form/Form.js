@@ -7,7 +7,7 @@ export default class Form extends React.Component {
     last_name: '',
     age: '',
     user_type: '',
-    investing_experience: '',
+    investing_experience: [],
     notes: ''
   }
 
@@ -41,33 +41,36 @@ export default class Form extends React.Component {
     })
   }
 
-  handleChangeLastName = (e) => {    this.setState({
-    last_name: e.target.value
-  })
-}
+  handleChangeLastName = (e) => {
+    this.setState({
+      last_name: e.target.value
+    })
+  }
 
-  handleChangeAge = (e) => {    this.setState({
-    age: e.target.value
-  })
-}
+  handleChangeAge = (e) => {
+    this.setState({
+      age: e.target.value
+    })
+  }
 
   handleChangeUserType = (e) => {
     this.setState({
       user_type: e.target.value
-  })
-}
+    })
+  }
 
   handleChangeInvestingExperience = (e) => {
+    let options = Array.from(e.target.selectedOptions, (option) => option.value)
     this.setState({
-      investing_experience: e.target.value
-  })
-}
+      investing_experience: options
+    })
+  }
 
   handleChangeNotes = (e) => {
     this.setState({
       notes: e.target.value
-  })
-}
+    })
+  }
 
   validateFirstName = (e) => {
     e.preventDefault()
@@ -96,10 +99,10 @@ export default class Form extends React.Component {
         <form onSubmit={this.validateFirstName}>
           <h2>User Information</h2>
           <label htmlFor={this.props.structure[0].field}>{this.props.structure[0].display_name}</label>
-          <input id={this.props.structure[0].field} type={this.props.structure[0].type} onChange={this.handleChangeFirstName}></input>
+          <input id={this.props.structure[0].field} type={this.props.structure[0].type} onChange={this.handleChangeFirstName} required></input>
           <br/>
           <label htmlFor={this.props.structure[1].field}>{this.props.structure[1].display_name}</label>
-          <input id={this.props.structure[1].field} type={this.props.structure[1].type} onChange={this.handleChangeLastName}></input>
+          <input id={this.props.structure[1].field} type={this.props.structure[1].type} onChange={this.handleChangeLastName} required></input>
           <br/>
           <label htmlFor={this.props.structure[2].field}>{this.props.structure[2].display_name}</label>
           <input id={this.props.structure[2].field} type={this.props.structure[2].type} onChange={this.handleChangeAge}></input>
@@ -110,10 +113,10 @@ export default class Form extends React.Component {
             {this.makeUserTypeList()}</select>
           <br/>
           <label htmlFor={this.props.structure[4].field}>{this.props.structure[4].display_name}</label>
-          <select id={this.props.structure[4].field} onChange={this.handleChangeInvestingExperience}>
-            <option key="0" value="">Select an option</option>
+          <select id={this.props.structure[4].field} multiple onChange={this.handleChangeInvestingExperience}>
+            <option key="0" value="">Press CTRL to select all that apply</option>
             {this.makeInvestingExperienceList()}</select>
-          <br/>
+          <br/><br/>
           <label htmlFor={this.props.structure[5].field}>{this.props.structure[5].display_name}</label>
           <br/>
           <textarea id={this.props.structure[5].field} type={this.props.structure[5].type} onChange={this.handleChangeNotes}></textarea>
